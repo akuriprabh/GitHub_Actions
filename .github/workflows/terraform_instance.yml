@@ -45,3 +45,28 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
+
+
+######################################################
+#     OIDC Trust Policy for GitHub Actions.          #
+######################################################
+# {
+# 	"Version": "2012-10-17",
+# 	"Statement": [
+# 		{
+# 			"Effect": "Allow",
+# 			"Principal": {
+# 				"Federated": "arn:aws:iam::786193448103:oidc-provider/token.actions.githubusercontent.com"
+# 			},
+# 			"Action": "sts:AssumeRoleWithWebIdentity",
+# 			"Condition": {
+# 				"StringEquals": {
+# 					"token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+# 				},
+# 				"StringLike": {
+# 					"token.actions.githubusercontent.com:sub": "repo:akuriprabh*/GitHub_Actions*:ref:refs/heads/main"
+# 				}
+# 			}
+# 		}
+# 	]
+# }
